@@ -1,16 +1,16 @@
 import { Address, beginCell, Cell, Contract, contractAddress, ContractProvider, Sender, SendMode } from '@ton/core';
 
-export type EmailFilteringPhishingGuardSpamDetectorConfig = {};
+export type ContractNameConfig = {};
 
-export function emailFilteringPhishingGuardSpamDetectorConfigToCell(config: EmailFilteringPhishingGuardSpamDetectorConfig): Cell {
+export function ContractNameConfigConfigToCell(config: ContractNameConfig): Cell {
     return beginCell().endCell();
 }
 
-export class EmailFilteringPhishingGuardSpamDetector implements Contract {
+export class ContractNameClass implements Contract {
     constructor(readonly address: Address, readonly init?: { code: Cell; data: Cell }) {}
 
     static createFromAddress(address: Address) {
-        return new EmailFilteringPhishingGuardSpamDetector(address);
+        return new ContractName(address);
     }
 
     static createFromConfig(config: EmailFilteringPhishingGuardSpamDetectorConfig, code: Cell, workchain = 0) {
