@@ -1,32 +1,32 @@
 import { Blockchain, SandboxContract, TreasuryContract } from '@ton/sandbox';
 import { Cell, toNano } from '@ton/core';
-import { EmailFilteringPhishingGuardSpamDetector } from '../wrappers/EmailFilteringPhishingGuardSpamDetector';
+import { ContractName } from '../wrappers/ContractNameConfig';
 import '@ton/test-utils';
 import { compile } from '@ton/blueprint';
 
-describe('EmailFilteringPhishingGuardSpamDetector', () => {
+describe('ContractNameDesc', () => {
     let code: Cell;
 
     beforeAll(async () => {
-        code = await compile('EmailFilteringPhishingGuardSpamDetector');
+        code = await compile('ContractNameConfig');
     });
 
     let blockchain: Blockchain;
     let deployer: SandboxContract<TreasuryContract>;
-    let emailFilteringPhishingGuardSpamDetector: SandboxContract<EmailFilteringPhishingGuardSpamDetector>;
+    let ContractNameConfig: SandboxContract<ContractName>;
 
     beforeEach(async () => {
         blockchain = await Blockchain.create();
 
-        emailFilteringPhishingGuardSpamDetector = blockchain.openContract(EmailFilteringPhishingGuardSpamDetector.createFromConfig({}, code));
+        ContractNameConfig = blockchain.openContract(ContractName.createFromConfig({}, code));
 
         deployer = await blockchain.treasury('deployer');
 
-        const deployResult = await emailFilteringPhishingGuardSpamDetector.sendDeploy(deployer.getSender(), toNano('0.05'));
+        const deployResult = await ContractNameConfig.sendDeploy(deployer.getSender(), toNano('0.05'));
 
         expect(deployResult.transactions).toHaveTransaction({
             from: deployer.address,
-            to: emailFilteringPhishingGuardSpamDetector.address,
+            to: ContractName.address,
             deploy: true,
             success: true,
         });
