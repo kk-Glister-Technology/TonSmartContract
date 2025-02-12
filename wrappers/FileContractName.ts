@@ -14,9 +14,9 @@ export class ContractNameClass implements Contract {
     }
 
     static createFromConfig(config: EmailFilteringPhishingGuardSpamDetectorConfig, code: Cell, workchain = 0) {
-        const data = emailFilteringPhishingGuardSpamDetectorConfigToCell(config);
+        const data = ContractNameConfigCell(config);
         const init = { code, data };
-        return new EmailFilteringPhishingGuardSpamDetector(contractAddress(workchain, init), init);
+        return new ContractNameConfigCell(contractAddress(workchain, init), init);
     }
 
     async sendDeploy(provider: ContractProvider, via: Sender, value: bigint) {
