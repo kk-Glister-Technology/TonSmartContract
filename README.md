@@ -1,4 +1,4 @@
-# Thinker
+# Thinker as the project Name
 
 ## Project structure
 
